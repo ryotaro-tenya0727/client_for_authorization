@@ -1,0 +1,28 @@
+version: '3'
+
+# 名前つきボリューム
+volumes:
+  mysql_data:
+services:
+  client_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/client/'
+    ports:
+      - '3004:3004'
+    tty: true
+    stdin_open: true
+    depends_on:
+      - db
+    links:
+      - db:database
+  db:
+    image: mysql:8.0
+    volumes:
+      - 'mysql_data:/var/lib/mysql'
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - '3309:3309'
