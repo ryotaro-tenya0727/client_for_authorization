@@ -18,6 +18,9 @@ services:
       - db
     links:
       - db:database
+    networks:
+      - default
+      - shared-network
   db:
     image: mysql:8.0
     volumes:
@@ -26,3 +29,7 @@ services:
       MYSQL_ROOT_PASSWORD: password
     ports:
       - '3309:3309'
+
+networks:
+  shared-network:
+    external: true
