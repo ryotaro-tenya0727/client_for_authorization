@@ -1,7 +1,7 @@
 class OauthController < ApplicationController
   def callback
+    host = ENV['OAUTH_AUTHENTICATION_HOST']
     # binding.pry
-    host = '172.30.0.2'
     client = OAuth2::Client.new(
                                 '-J1fePKFRCDbAUme6FXzjeTgaAbIr0i3f8OV7ao8IPM',
                                 'GuADl4cSB3sCfSa1Abha313I1yBswP9UrBIzvrm_6c8',
@@ -11,6 +11,8 @@ class OauthController < ApplicationController
                               )
     # 以下は認証URLが取得できる
     # client.auth_code.authorize_url(redirect_uri: 'http://localhost:3004/oauth/callback')
+
+    # binding.pry
     access = client.auth_code.get_token(
                                         params[:code],
                                         redirect_uri: 'http://localhost:3004/oauth/callback'

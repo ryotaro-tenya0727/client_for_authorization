@@ -1,4 +1,4 @@
-FROM ruby:latest
+FROM ruby:3.3.0
 RUN apt-get update
 RUN apt-get install -y build-essential
 WORKDIR /client

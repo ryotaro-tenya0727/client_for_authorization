@@ -21,6 +21,8 @@ services:
     networks:
       - default
       - shared-network
+    environment:
+      OAUTH_AUTHENTICATION_HOST: authorization_end_point_app
   db:
     image: mysql:8.0
     volumes:
